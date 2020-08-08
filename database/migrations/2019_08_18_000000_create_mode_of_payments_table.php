@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductTypesTable extends Migration
+class CreateModeOfPaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateProductTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_types', function (Blueprint $table) {
+        Schema::create('mode_of_payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type', 50);
+            $table->string('name', 30);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateProductTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_types');
+        Schema::dropIfExists('mode_of_payments');
     }
 }
