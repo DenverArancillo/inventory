@@ -30,59 +30,30 @@
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom white-bg">
                 <nav class="navbar navbar-expand-lg navbar-static-top" role="navigation">
-                    <!--<div class="navbar-header">-->
-                        <!--<button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">-->
-                            <!--<i class="fa fa-reorder"></i>-->
-                        <!--</button>-->
+                   
+                    <a href="#" class="navbar-brand">Inspinia</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-reorder"></i>
+                    </button>
 
-                        <a href="#" class="navbar-brand">Inspinia</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fa fa-reorder"></i>
-                        </button>
-
-                    <!--</div>-->
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-nav mr-auto">
-                            <li class="active">
-                                <a aria-expanded="false" role="button" href="layouts.html"> Back to main Layout page</a>
-                            </li>
+                            <li><a href="">Orders</a></li>
                             <li class="dropdown">
-                                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item</a>
-                                <ul role="menu" class="dropdown-menu">
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
+                                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Products</a>
+                                <ul role="menu" class="dropdown-menu show">
+                                    <li><a href="">Add Products</a></li>
+                                    <li><a href="">Product Types</a></li>
+                                    <li><a href="">View Products</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item</a>
-                                <ul role="menu" class="dropdown-menu">
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
+                                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">Brands</a>
+                                <ul role="menu" class="dropdown-menu show">
+                                    <li><a href="">Add Brands</a></li>
+                                    <li><a href="">View Brands</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item</a>
-                                <ul role="menu" class="dropdown-menu">
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item</a>
-                                <ul role="menu" class="dropdown-menu">
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                    <li><a href="">Menu item</a></li>
-                                </ul>
-                            </li>
-
                         </ul>
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
@@ -109,20 +80,12 @@
         </div>
     </div>
 
-
-
     <!-- Mainly scripts -->
     <script src="{{ asset('assets/js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.metisMenu.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-
-        });
-    </script>
 
 </body>
 </html>
