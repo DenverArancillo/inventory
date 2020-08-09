@@ -41,7 +41,7 @@
                             <li><a href="">Orders</a></li>
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Products</a>
-                                <ul role="menu" class="dropdown-menu show">
+                                <ul role="menu" class="dropdown-menu">
                                     <li><a href="">Add Products</a></li>
                                     <li><a href="">Product Types</a></li>
                                     <li><a href="">View Products</a></li>
@@ -49,7 +49,7 @@
                             </li>
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">Brands</a>
-                                <ul role="menu" class="dropdown-menu show">
+                                <ul role="menu" class="dropdown-menu">
                                     <li><a href="">Add Brands</a></li>
                                     <li><a href="">View Brands</a></li>
                                 </ul>
