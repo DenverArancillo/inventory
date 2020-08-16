@@ -42,9 +42,8 @@
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Products</a>
                                 <ul role="menu" class="dropdown-menu">
-                                    <li><a href="">Add Products</a></li>
-                                    <li><a href="">Product Types</a></li>
-                                    <li><a href="">View Products</a></li>
+                                    <li><a href="/product_types">Product Types</a></li>
+                                    <li><a href="/products">View Products</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -66,7 +65,11 @@
                 </nav>
             </div>
             <div class="wrapper wrapper-content">
-                @yield('content')
+                <div class="container">
+                    <div class="row justify-content-center">
+                        @yield('content')
+                    </div>
+                </div>
             </div>
             <div class="footer">
                 <div class="float-right">
