@@ -10,19 +10,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/font/css/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 
-    {{-- <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    @stack('head')
 </head>
 <body class="top-navigation">
 
@@ -49,8 +41,7 @@
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">Brands</a>
                                 <ul role="menu" class="dropdown-menu">
-                                    <li><a href="">Add Brands</a></li>
-                                    <li><a href="">View Brands</a></li>
+                                    <li><a href="/brands">View Brands</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -82,13 +73,11 @@
 
         </div>
     </div>
-
-    <!-- Mainly scripts -->
+    <!-- Main scripts -->
     <script src="{{ asset('assets/js/jquery-3.1.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
+
+    @stack('script')
 
 </body>
 </html>
