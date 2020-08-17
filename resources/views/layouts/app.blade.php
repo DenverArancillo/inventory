@@ -23,7 +23,7 @@
             <div class="row border-bottom white-bg">
                 <nav class="navbar navbar-expand-lg navbar-static-top" role="navigation">
                    
-                    <a href="#" class="navbar-brand">Inspinia</a>
+                    <a href="#" class="navbar-brand">Bicolandia Milk Tea</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-reorder"></i>
                     </button>

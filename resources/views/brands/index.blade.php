@@ -9,7 +9,7 @@
             <div class="ibox-title">
                 <h5>Brands</h5>
                 <div class="ibox-tools ibox-tool-btn">
-                    <button class="btn btn-sm btn-primary btn-rounded">
+                    <button type="button" class="btn btn-sm btn-primary btn-rounded" data-toggle="modal" data-target="#add_brand">
                         <i class="fa fa-plus"></i> Add Brand
                     </button>
                 </div>
@@ -61,6 +61,8 @@
             </div>
         </div>
     </div>
+
+    @include('brands.modals.add_brand')
 
     @push('script')
         <script src="{{ asset('assets/js/plugins/dataTables/datatables.min.js') }}"></script>
