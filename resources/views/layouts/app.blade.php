@@ -10,19 +10,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/font/css/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 
-    {{-- <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    @stack('head')
 </head>
 <body class="top-navigation">
 
@@ -31,7 +23,7 @@
             <div class="row border-bottom white-bg">
                 <nav class="navbar navbar-expand-lg navbar-static-top" role="navigation">
                    
-                    <a href="#" class="navbar-brand">Inspinia</a>
+                    <a href="#" class="navbar-brand">Bicolandia Milk Tea</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-reorder"></i>
                     </button>
@@ -42,31 +34,36 @@
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Products</a>
                                 <ul role="menu" class="dropdown-menu">
-                                    <li><a href="">Add Products</a></li>
-                                    <li><a href="">Product Types</a></li>
-                                    <li><a href="">View Products</a></li>
+                                    <li><a href="/product_types">Product Types</a></li>
+                                    <li><a href="/products">View Products</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">Brands</a>
                                 <ul role="menu" class="dropdown-menu">
-                                    <li><a href="">Add Brands</a></li>
-                                    <li><a href="">View Brands</a></li>
+                                    <li><a href="/brands">View Brands</a></li>
                                 </ul>
                             </li>
                         </ul>
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
-                                <a href="login.html">
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fa fa-sign-out"></i> Log out
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div>
             <div class="wrapper wrapper-content">
-                @yield('content')
+                <div class="container">
+                    <div class="row justify-content-center">
+                        @yield('content')
+                    </div>
+                </div>
             </div>
             <div class="footer">
                 <div class="float-right">
@@ -79,13 +76,11 @@
 
         </div>
     </div>
-
-    <!-- Mainly scripts -->
+    <!-- Main scripts -->
     <script src="{{ asset('assets/js/jquery-3.1.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
+
+    @stack('script')
 
 </body>
 </html>
