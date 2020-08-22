@@ -7,19 +7,13 @@
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				</div>
 				<div class="modal-body">
-						<div class="form-group row">
-							{{ Form::label('brand_name', 'Title', ['class' => 'col-sm-2 col-form-label']) }}
-							<div class="col-sm-10">
-								{{ Form::text('brand_name', '', ['class' => 'form-control']) }}
-							</div>
+					@csrf
+					<div class="form-group row">
+						{{ Form::label('name', 'Title', ['class' => 'col-sm-2 col-form-label']) }}
+						<div class="col-sm-10">
+							{{ Form::text('name', '', ['class' => 'form-control']) }}
 						</div>
-						<div class="form-group row">
-							{{ Form::label('brand_tags', 'Tags', ['class' => 'col-sm-2 col-form-label']) }}
-							<div class="col-sm-10">
-								{{ Form::text('brand_tags', '', ['class' => 'form-control']) }}
-							</div>
-						</div>
-					
+					</div>
 				</div>
 
 				<div class="modal-footer">

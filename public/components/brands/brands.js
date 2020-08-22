@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(() => {
     $('.dataTables-example').DataTable({
         pageLength: 25,
         responsive: true,

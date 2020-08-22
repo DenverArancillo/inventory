@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/toastr/toastr.min.css') }}">
 
     @stack('head')
 </head>
@@ -79,8 +80,9 @@
     <!-- Main scripts -->
     <script src="{{ asset('assets/js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-
+    <script src="{{ asset('assets/js/plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('components/common/base.js') }}"></script>
+    
     @stack('script')
-
 </body>
 </html>

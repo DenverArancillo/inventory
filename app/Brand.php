@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
 {
+    protected $fillable = [
+        'name', 'tags'
+    ];
+
     public function product () {
         return $this->hasMany('App\Product');
     }

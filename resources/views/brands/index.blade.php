@@ -17,45 +17,23 @@
             <div class="ibox-content">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
-                    <thead>
-                    <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="gradeX">
-                        <td>Trident</td>
-                        <td>Internet
-                            Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td class="center">4</td>
-                        <td class="center">X</td>
-                    </tr>
-                    <tr class="gradeC">
-                        <td>Trident</td>
-                        <td>Internet
-                            Explorer 5.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td class="center">5</td>
-                        <td class="center">C</td>
-                    </tr>
-
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                    </tr>
-                    </tfoot>
+                        <thead>
+                            <tr>
+                                <td>Brand Name</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (count($brands) > 1)
+                                @foreach ($brands as $brand)
+                                    <tr><td>{{ $brand->name }}</td></tr>
+                                @endforeach                         
+                            @endif
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Brand Name</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -68,5 +46,15 @@
         <script src="{{ asset('assets/js/plugins/dataTables/datatables.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('components/brands/brands.js') }}"></script>
+        @if (session('brand'))
+            <script>
+                let data = {!! session('brand') !!}
+                if (data.type === 'warning') {
+                    toastr[data.type](data.message);
+                } else if (data.type === 'success') {
+                    toastr[data.type](data.message);
+                }
+            </script>
+        @endif
     @endpush
 @endsection 
