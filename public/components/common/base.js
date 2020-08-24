@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(function(){
     toastr.options = {
         "progressBar": true,
         "preventDuplicates": false,
