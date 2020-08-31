@@ -26,16 +26,16 @@ $(document).ready(function(){
         ]
     });
 
-    const base_url = $('#brnd_update').attr('action');
+    const base_url = $('#frm_brand_update').attr('action');
 
-    $('#update_brand').on('show.bs.modal', function (event) {
+    $('#modal_update_brand').on('show.bs.modal', function (event) {
         let id = atob($(event.relatedTarget).data('id'));
         let name = $(event.relatedTarget).data('name');
 
         let new_url = `${base_url}/${id}`;
 
-        $('#brnd_update').attr('action', new_url);
-        $(this).find('#update_brand_name').val(name);
+        $('#frm_brand_update').attr('action', new_url);
+        $(this).find('#inp_up_brand_name').val(name);
     });
 
 });

@@ -1,7 +1,7 @@
-<div class="modal fade" id="update_brand" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal fade" id="modal_update_brand" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-			{!! Form::open(['action' => ['BrandsController@update', ''], 'method' => 'PUT', 'id' => 'brnd_update']) !!}
+			{!! Form::open(['action' => ['BrandsController@update', ''], 'method' => 'PUT', 'id' => 'frm_brand_update']) !!}
 
 				<div class="modal-header">
 					<h3 class="modal-title">Update Brand</h3>
@@ -12,7 +12,7 @@
 					<div class="form-group row">
 						{!! Form::label('name', 'Name', ['class' => 'col-sm-2 col-form-label']) !!}
 						<div class="col-sm-10">
-							{!! Form::text('name', '', ['class' => 'form-control', 'id' => 'update_brand_name']) !!}
+							{!! Form::text('name', '', ['class' => 'form-control', 'id' => 'inp_up_brand_name']) !!}
 						</div>
 					</div>
 				</div>
