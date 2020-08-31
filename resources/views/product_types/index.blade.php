@@ -32,7 +32,7 @@
                                             <button class="btn btn-xs btn-circle btn-primary" 
                                                 data-toggle="modal" 
                                                 data-target="#modal_update_prod_type" 
-                                                data-name="{{ $prod_type->type }}" 
+                                                data-type="{{ $prod_type->type }}" 
                                                 data-id="{!! base64_encode($prod_type->id) !!}" 
                                                 title="Update"                                                
                                             >
