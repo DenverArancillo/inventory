@@ -24,12 +24,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (count($brands) > 1)
+                            @if (count($brands) >= 1)
                                 @foreach ($brands as $brand)
                                     <tr>
                                         <td>{{ $brand->name }}</td>
                                         <td>
-                                            <button class="btn btn-xs btn-circle  btn-primary" data-toggle="modal" data-target="#update_brand" data-name="{{ $brand->name }}" data-id="{!! base64_encode($brand->id) !!}" title="Update">
+                                            <button class="btn btn-xs btn-circle btn-primary" 
+                                                data-toggle="modal" 
+                                                data-target="#update_brand" 
+                                                data-name="{{ $brand->name }}" 
+                                                data-id="{!! base64_encode($brand->id) !!}" 
+                                                title="Update"
+                                            >
                                                 <i class="fa fa-pencil"></i>
                                             </button>
                                         </td>
