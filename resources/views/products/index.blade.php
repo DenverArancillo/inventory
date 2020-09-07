@@ -19,27 +19,42 @@
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                             <tr>
+                                <th>Product</th>
+                                <th>Product Type</th>
                                 <th>Brand</th>
+                                <th>Stock</th>
+                                <th>Price/unit</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @if (count($brands) >= 1)
-                                @foreach ($brands as $brand)
+                            @if (count($products) >= 1)
+                                @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $brand->name }}</td>
+                                        <td>{{ $product->name }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
-                                            <button class="btn btn-xs btn-circle  btn-primary" data-toggle="modal" data-target="#update_brand" data-name="{{ $brand->name }}" data-id="{!! base64_encode($brand->id) !!}" title="Update">
+                                            <button class="btn btn-xs btn-circle  btn-primary" 
+                                                data-toggle="modal" 
+                                                title="Update"
+                                            >
                                                 <i class="fa fa-pencil"></i>
                                             </button>
                                         </td>
                                     </tr>
                                 @endforeach                         
-                            @endif --}}
+                            @endif
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>Product</th>
+                                <th>Product Type</th>
                                 <th>Brand</th>
+                                <th>Stock</th>
+                                <th>Price</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -51,6 +66,9 @@
 
     @push('script')
         <script src="{{ asset('assets/js/plugins/dataTables/datatables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>s
+        <script src="{{ asset('assets/js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>
+        
+        <script src="{{ asset('components/products/products.js') }}"></script>
+
     @endpush
 @endsection
