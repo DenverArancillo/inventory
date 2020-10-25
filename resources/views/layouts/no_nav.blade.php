@@ -40,11 +40,5 @@
     <script src="{{ asset('assets/js/jquery.metisMenu.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
 
-    <script>
-        $(document).ready(function() {
-
-        });
-    </script>
-
 </body>
 </html>

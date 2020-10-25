@@ -10,9 +10,9 @@
 				<div class="modal-body">
 					@csrf
 					<div class="form-group row">
-						{!! Form::label('name', 'Name', ['class' => 'col-sm-2 col-form-label']) !!}
+						{!! Form::label('brand_name', 'Brand Name', ['class' => 'col-sm-2 col-form-label']) !!}
 						<div class="col-sm-10">
-							{!! Form::text('name', '', ['class' => 'form-control', 'id' => 'inp_up_brand_name']) !!}
+							{!! Form::text('brand_name', '', ['class' => 'form-control', 'id' => 'inp_up_brand_name']) !!}
 						</div>
 					</div>
 				</div>

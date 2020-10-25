@@ -37,12 +37,12 @@ class BrandsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'brand_name' => 'required',
         ]);
 
-        $new_brand = $request->input('name');
+        $new_brand = $request->input('brand_name');
 
-        $find_brand = Brand::where('name', $new_brand)->get();
+        $find_brand = Brand::where('brand_name', $new_brand)->get();
 
         if ($find_brand->count() >= 1) {
             return redirect('/brands')->with('brand', json_encode([
@@ -51,7 +51,7 @@ class BrandsController extends Controller
             ]));
         } else {
             $brand = new Brand;
-            $brand->name = $new_brand;
+            $brand->brand_name = $new_brand;
             $brand->save();
 
             return redirect('/brands')->with('brand', json_encode([
@@ -95,12 +95,12 @@ class BrandsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'brand_name' => 'required',
         ]);
 
-        $update_brand = $request->input('name');
+        $update_brand = $request->input('brand_name');
 
-        $find_brand = Brand::where('name', $update_brand)->get();
+        $find_brand = Brand::where('brand_name', $update_brand)->get();
 
         if ($find_brand->count() >= 1) {
             return redirect('/brands')->with('brand', json_encode([
@@ -109,7 +109,7 @@ class BrandsController extends Controller
             ]));
         } else {
             $brand = Brand::find($id);
-            $brand->name = $update_brand;
+            $brand->brand_name = $update_brand;
             $brand->save();
 
             return redirect('/brands')->with('brand', json_encode([

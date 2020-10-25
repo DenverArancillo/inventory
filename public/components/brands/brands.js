@@ -30,7 +30,7 @@ $(document).ready(function(){
 
     $('#modal_update_brand').on('show.bs.modal', function (event) {
         let id = atob($(event.relatedTarget).data('id'));
-        let name = $(event.relatedTarget).data('name');
+        let name = $(event.relatedTarget).data('brand_name');
 
         let new_url = `${base_url}/${id}`;
 
