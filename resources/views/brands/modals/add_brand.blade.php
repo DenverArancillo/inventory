@@ -1,4 +1,4 @@
-<div class="modal fade" id="add_brand" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal fade" id="modal_add_brand" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 			{{ Form::open(['action' => 'BrandsController@store']) }}
@@ -11,7 +11,7 @@
 					<div class="form-group row">
 						{{ Form::label('name', 'Name', ['class' => 'col-sm-2 col-form-label']) }}
 						<div class="col-sm-10">
-							{{ Form::text('name', '', ['class' => 'form-control', 'id' => 'add_brand_name']) }}
+							{{ Form::text('name', '', ['class' => 'form-control', 'id' => 'inp_add_brand']) }}
 						</div>
 					</div>
 				</div>

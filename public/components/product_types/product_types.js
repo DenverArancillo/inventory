@@ -6,8 +6,8 @@ $(document).ready(function(){
         buttons: [
             {extend: 'copy'},
             {extend: 'csv'},
-            {extend: 'excel', title: 'brands'},
-            {extend: 'pdf', title: 'brands'},
+            {extend: 'excel', title: 'product_types'},
+            {extend: 'pdf', title: 'product_types'},
             {
                 extend: 'print',
                 customize: function (win){
@@ -26,16 +26,16 @@ $(document).ready(function(){
         ]
     });
 
-    const base_url = $('#frm_brand_update').attr('action');
+    const base_url = $('#frm_prod_type').attr('action');
 
-    $('#modal_update_brand').on('show.bs.modal', function (event) {
+    $('#modal_update_prod_type').on('show.bs.modal', function (event) {
         let id = atob($(event.relatedTarget).data('id'));
-        let name = $(event.relatedTarget).data('name');
+        let name = $(event.relatedTarget).data('type');
 
         let new_url = `${base_url}/${id}`;
 
-        $('#frm_brand_update').attr('action', new_url);
-        $(this).find('#inp_up_brand_name').val(name);
+        $('#frm_prod_type').attr('action', new_url);
+        $(this).find('#inp_up_prod_type').val(name);
     });
 
 });

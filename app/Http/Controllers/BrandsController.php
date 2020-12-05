@@ -44,7 +44,7 @@ class BrandsController extends Controller
 
         $find_brand = Brand::where('name', $new_brand)->get();
 
-        if ($find_brand->count() === 1) {
+        if ($find_brand->count() >= 1) {
             return redirect('/brands')->with('brand', json_encode([
                 'message' => 'Brand already exists.',
                 'type' => 'warning'
@@ -102,7 +102,7 @@ class BrandsController extends Controller
 
         $find_brand = Brand::where('name', $update_brand)->get();
 
-        if ($find_brand->count() === 1) {
+        if ($find_brand->count() >= 1) {
             return redirect('/brands')->with('brand', json_encode([
                 'message' => 'Brand already exists.',
                 'type' => 'warning'
