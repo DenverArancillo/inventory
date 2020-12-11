@@ -39,6 +39,8 @@
 										<td>
 											<button class="btn btn-xs btn-circle  btn-primary" 
 												data-toggle="modal" 
+												data-target="#modal_update_product"
+												data-info="{!! base64_encode(json_encode($product)) !!}"
 												title="Update"
 											>
 												<i class="fa fa-pencil"></i>
@@ -65,12 +67,22 @@
 	</div>
 
 	@include('products.modals.add_product', ['brands' => $brands, 'product_types', $product_types])
+	@include('products.modals.update_product', ['brands' => $brands, 'product_types', $product_types])
 
 	@push('script')
 		<script src="{{ asset('assets/js/plugins/dataTables/datatables.min.js') }}"></script>
 		<script src="{{ asset('assets/js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>
 		
 		<script src="{{ asset('components/products/products.js') }}"></script>
-
+        @if (session('product'))
+            <script>
+                let data = {!! session('product') !!}
+                if (data.type === 'warning') {
+                    toastr[data.type](data.message);
+                } else if (data.type === 'success') {
+                    toastr[data.type](data.message);
+                }
+            </script>
+        @endif
 	@endpush
 @endsection

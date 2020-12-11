@@ -93,9 +93,6 @@ class ProductsController extends Controller
 
 			return redirect('/products');
 		}
-		// get ids of foreign keys
-		// check if exists
-		// create product
 	}
 
 	/**
@@ -129,7 +126,32 @@ class ProductsController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		//
+		$this->validate($request, [
+			'prod_name' => 'required|max:255',
+			'type_id' => 'required',
+			'stock' => 'required',
+			'price' => 'required',
+			'brand_id'=> 'required'
+		]);
+
+		$req_prod_name = $request->input('prod_name');
+
+		$product = Product::find($id);
+		
+		if ($product->prod_name !== $req_prod_name) {
+			$product->prod_name = $req_prod_name;
+		}
+
+		$product->type_id = $request->input('type_id');
+		$product->stock = $request->input('stock');
+		$product->price = $request->input('price');
+		$product->brand_id = $request->input('brand_id');
+		$product->save();
+
+		return redirect('/products')->with('product', json_encode([
+			'message' => 'Product successfully updated!',
+			'type' => 'success'
+		]));
 	}
 
 	/**

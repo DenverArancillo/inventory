@@ -29,4 +29,24 @@ $(document).ready(function(){
             { width: "10%" },
         ]
     });
+
+    const base_url = $('#frm_product').attr('action');
+
+    $("#modal_update_product").on('show.bs.modal', function(event) {
+
+        let info = JSON.parse(atob($(event.relatedTarget).data('info')));
+        let new_url = `${base_url}/${info.id}`;
+
+        console.log(info);
+        
+        $('#frm_product').attr('action', new_url);
+
+        $(this).find("#inp_up_product_name").val(info.prod_name);
+        $(this).find("#inp_up_product_prod_type").val(info.type_id);
+        $(this).find("#inp_up_product_brands").val(info.brand_id);
+        $(this).find("#inp_up_product_stock").val(info.stock);
+        $(this).find("#inp_up_product_price").val(info.price);
+
+    });
+
 });
