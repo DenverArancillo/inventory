@@ -27,12 +27,12 @@
                             @if (count($brands) >= 1)
                                 @foreach ($brands as $brand)
                                     <tr>
-                                        <td>{{ $brand->name }}</td>
+                                        <td>{{ $brand->brand_name }}</td>
                                         <td>
                                             <button class="btn btn-xs btn-circle btn-primary" 
                                                 data-toggle="modal" 
                                                 data-target="#modal_update_brand" 
-                                                data-name="{{ $brand->name }}" 
+                                                data-brand_name="{{ $brand->brand_name }}" 
                                                 data-id="{!! base64_encode($brand->id) !!}" 
                                                 title="Update"
                                             >

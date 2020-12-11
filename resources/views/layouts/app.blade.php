@@ -39,8 +39,8 @@
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Products</a>
                                 <ul role="menu" class="dropdown-menu">
-                                    <li><a href="/product_types">Product Types</a></li>
                                     <li><a href="/products">View Products</a></li>
+                                    <li><a href="/product_types">Product Types</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
