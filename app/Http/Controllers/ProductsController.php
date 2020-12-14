@@ -78,11 +78,11 @@ class ProductsController extends Controller
 		$find_product = Product::where('prod_name', $req['prod_name'])->get();
 
 		if ($find_product->count() >= 1) {
-			// error 
-			// product already exists
+			return redirect('/products')->with('product', json_encode([
+                'message' => 'Product already exists.',
+                'type' => 'warning'
+            ]));
 		} else if ($find_brand->count() === 1 && $find_prod_type->count() === 1) {
-			// product does not exist 
-			// and brand and prod type exists
 			$product = new Product;
 			$product->prod_name = $req['prod_name'];
 			$product->type_id = $req['type_id'];
