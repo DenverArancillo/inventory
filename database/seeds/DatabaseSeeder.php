@@ -1,5 +1,7 @@
 <?php
 
+use App\Brand;
+use App\ProductType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,7 +14,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserSeeder::class
+            UserSeeder::class,
+            BrandSeeder::class,
+            ProductTypeSeeder::class,
+            ProductSeeder::class
         ]);
     }
 }
