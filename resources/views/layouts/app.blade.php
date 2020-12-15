@@ -35,20 +35,15 @@
 
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-nav mr-auto">
-                            <li><a href="">Orders</a></li>
+                            <li><a href="/orders">Orders</a></li>
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Products</a>
                                 <ul role="menu" class="dropdown-menu">
                                     <li><a href="/products">View Products</a></li>
-                                    <li><a href="/product_types">Product Types</a></li>
+                                    <li><a href="/product_types">View Product Types</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">Brands</a>
-                                <ul role="menu" class="dropdown-menu">
-                                    <li><a href="/brands">View Brands</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/brands">Brands</a></li>
                         </ul>
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
