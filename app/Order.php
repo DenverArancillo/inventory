@@ -14,8 +14,4 @@ class Order extends Model
         return $this->hasMany('App\OrderItem');
     }
 
-    public function mop () {
-        return $this->belongsTo('App\ModeOfPayment');
-    }
-
 }
