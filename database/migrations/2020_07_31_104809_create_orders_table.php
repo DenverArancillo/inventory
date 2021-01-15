@@ -20,22 +20,17 @@ class CreateOrdersTable extends Migration
             $table->text('address_to_deliver');
             $table->text('customer_name');
             $table->text('customer_address');
+            $table->text('mop');
             $table->enum('status', ['Pending', 'Consolidating', 'On Delivery', 'Done']);
             $table->unsignedDecimal('total_amount', 7, 2);
             $table->text('notes')->nullable();
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('mop_id');
         });
 
         Schema::table('orders', function (Blueprint $table) {
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onUpdate('cascade');
-
-            $table->foreign('mop_id')
-                ->references('id')
-                ->on('mode_of_payments')
                 ->onUpdate('cascade');
         });
     }
