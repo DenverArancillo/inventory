@@ -22,7 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'last_name' => 'Arncillo',
         'first_name' => 'Denver',
-        'email' => 'xdba28@gmail.com',
+        'email' => 'sample@sample.com',
         'email_verified_at' => now(),
         'password' => Hash::make('qwe.123'),
         'remember_token' => Str::random(10),
