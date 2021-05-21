@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Auth::routes();
-
-Route::middleware('auth')->group(function () {
-	Route::get('/', 'HomeController@index')->name('home');
-	Route::resource('products', 'ProductsController');
-	Route::resource('product_types', 'ProductTypesController');
-	Route::resource('brands', 'BrandsController');
-	Route::resource('orders', 'OrdersController');
-});
+Route::get('/{path?}', function () {
+    return view('index');
+})->where('path', '.*')->name('/');

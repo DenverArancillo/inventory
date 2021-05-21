@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Brand;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class BrandsController extends Controller
@@ -14,18 +14,7 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
-        return view('brands.index')->with('brands', $brands);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Brand::all();
     }
 
     /**
@@ -45,19 +34,20 @@ class BrandsController extends Controller
         $find_brand = Brand::where('brand_name', $new_brand)->get();
 
         if ($find_brand->count() >= 1) {
-            return redirect('/brands')->with('brand', json_encode([
+            return response()->json([
                 'message' => 'Brand already exists.',
-                'type' => 'warning'
-            ]));
+                'status' => false
+            ]);
         } else {
             $brand = new Brand;
             $brand->brand_name = $new_brand;
             $brand->save();
 
-            return redirect('/brands')->with('brand', json_encode([
+            return response()->json([
                 'message' => 'Brand successfully saved!',
-                'type' => 'success'
-            ]));
+                'brands' => Brand::all(),
+                'status' => true
+            ]);
         }
     }
 
@@ -69,20 +59,7 @@ class BrandsController extends Controller
      */
     public function show($id)
     {
-        return response()->json([
-            'id' => $id
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return Brand::find($id);
     }
 
     /**
@@ -94,29 +71,9 @@ class BrandsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'brand_name' => 'required',
-        ]);
-
-        $update_brand = $request->input('brand_name');
-
-        $find_brand = Brand::where('brand_name', $update_brand)->get();
-
-        if ($find_brand->count() >= 1) {
-            return redirect('/brands')->with('brand', json_encode([
-                'message' => 'Brand already exists.',
-                'type' => 'warning'
-            ]));
-        } else {
-            $brand = Brand::find($id);
-            $brand->brand_name = $update_brand;
-            $brand->save();
-
-            return redirect('/brands')->with('brand', json_encode([
-                'message' => 'Brand successfully updated!',
-                'type' => 'success'
-            ]));
-        }
+        $brand = Brand::find($id);
+        $brand->update($request->all());
+        return $brand;
     }
 
     /**
@@ -127,6 +84,17 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Brand::destroy($id);
+    }
+
+    /**
+     * Search for a name
+     *
+     * @param  str  $brand_name
+     * @return \Illuminate\Http\Response
+     */
+    public function search($brand_name)
+    {
+        return Brand::where('brand_name', 'like', '%'.$brand_name.'%')->get();
     }
 }
