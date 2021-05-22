@@ -18,7 +18,7 @@ const Table = ({ columns, rows }) => {
 	const divideEntries = (_rows) => {
 		// set page state to default
 		setStatePagination(false);
-		setStatePage(2);
+		setStatePage(0);
 		
 		let int_entries = parseInt(entries);
 		let newRows = [];
@@ -69,13 +69,50 @@ const Table = ({ columns, rows }) => {
 		)
 	}
 
-	const pageNearEnd = () => {
-		let start = 0;
-		let end = dividedRows.length - 1;
+	const pageNearCheck = () => {
+		const pageNearStart = () => {
+			let pageIncrease = (page === 0) ? 2 : 1;
+
+			return (
+				<Fragment>
+					<button className={`${buttonClass} ${(pageIncrease === 1) ? 'bg-light-blue-400 border-2 border-light-blue-400':''} `} onClick={() => setStatePage(page)}>{page + pageIncrease}</button>
+					<button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease)}>{page + pageIncrease + 1}</button>
+					<button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease + 1)}>{page + pageIncrease + 2}</button>
+					<span className="mx-1">...</span>
+				</Fragment>
+			)
+		}
+
+		const pageNearEnd = () => {
+			let pageCheck = page === dividedRows.length - 1
+
+			return (
+				<Fragment>
+					<span className="mx-1">...</span>
+					{ (pageCheck) 
+						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - 3)}>{page - 2}</button>
+						: <button className={`${buttonClass}`} onClick={() => setStatePage(page - 2)}>{page - 1}</button>
+					}
+
+					{ (pageCheck) 
+						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - 2)}>{page - 1}</button> 
+						: <button className={`${buttonClass}`} onClick={() => setStatePage(page - 1)}>{page}</button> 
+
+					}
+
+					{ (pageCheck)
+						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - 1)}>{page}</button> 
+						: <button className={`${buttonClass} bg-light-blue-400 border-2 border-light-blue-400`} onClick={() => setStatePage(page)}>{page + 1}</button>
+					}
+				</Fragment>
+			)
+		}
+
+		let pageRender = (page < 2) ? pageNearStart : pageNearEnd;
 
 		return (
 			<Fragment>
-
+				{ pageRender() }
 			</Fragment>
 		)
 	}
@@ -205,7 +242,7 @@ const Table = ({ columns, rows }) => {
 										{/* pages in between */}
 										{ (page > 1 && (page + 1) < dividedRows.length - 1) ?
 											pageInbetween()
-											: pageNearEnd()
+											: pageNearCheck()
 										}
 
 										{/* last page */}
@@ -221,18 +258,6 @@ const Table = ({ columns, rows }) => {
 										<ChevronRightIcon className="h-6 w-6 ml-2 focus:outline-none" onClick={nextPage}/>
 									</Fragment>
 								: ''
-
-								// ${(page === idx) ? 'bg-light-blue-400 border-2 border-light-blue-400':''}
-
-								// {dividedRows.map((r, idx) => (
-								// 	<button 
-								// 		className={`text-white text-xs px-2 py-1 mx-1 focus:outline-none shadow-lg rounded bg-blue-400 ${(page === idx) ? 'bg-light-blue-400 border-2 border-light-blue-400':''}`} 
-								// 		key={`page-${idx}`} 
-								// 		onClick={() => setStatePage(idx)}
-								// 	>
-								// 		{idx + 1}
-								// 	</button>
-								// ))}
 							}
 						</div>
 
