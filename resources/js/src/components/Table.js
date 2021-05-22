@@ -163,8 +163,6 @@ const Table = ({ columns, rows }) => {
 
 			let result = uniqByKeepFirst(searchResults);
 
-			console.log('rows', result);
-
 			setStatesearchResults(result)
 			divideEntries(result);
 		});
