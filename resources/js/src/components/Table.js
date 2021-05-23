@@ -81,12 +81,12 @@ const Table = ({ columns, rows }) => {
 
 			return (
 				<Fragment>
-					<button className={`${buttonClass} ${(pageIncrease === 1) ? 'bg-light-blue-400 border-2 border-light-blue-400':''} `} onClick={() => setStatePage(page)}>{page + pageIncrease}</button>
+					<button className={`${buttonClass} ${(pageIncrease === 1) ? 'bg-light-blue-400 border-2 border-light-blue-400':''} `} onClick={() => setStatePage((page === 0) ? 1 : page)}>{page + pageIncrease}</button>
 					<button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease)}>{page + pageIncrease + 1}</button>
 					<button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease + 1)}>{page + pageIncrease + 2}</button>
 
 					{/* check if last page is next to end page*/}
-					{ (page + pageIncrease + 3 !== dividedRows.length - 1) ? null : <span className="mx-1">...</span> }
+					{ (page + pageIncrease + 2 > dividedRows.length - 2) ? null : <span className="mx-1">...</span> }
 				</Fragment>
 			)
 		}
