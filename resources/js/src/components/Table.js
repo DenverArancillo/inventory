@@ -58,18 +58,24 @@ const Table = ({ columns, rows }) => {
 	}
 
 	const pageInbetween = () => {
+
 		return (
 			<Fragment>
-				<span className="mx-1">...</span>
+				{/* check if 1st page is next */}
+				{ (page - 2 !== 0) ? <span className="mx-1">...</span> : null }
+
 				<button className={`${buttonClass}`} onClick={() => setStatePage(page - 1)}>{page}</button> 
 				<button className={`${buttonClass} bg-light-blue-400 border-2 border-light-blue-400`} onClick={() => setStatePage(page)}>{page + 1}</button>
 				<button className={`${buttonClass}`} onClick={() => setStatePage(page + 1)}>{page + 2}</button>
-				<span className="mx-1">...</span>
+				
+				{/* check if last page is next */}
+				{ (page + 2 > dividedRows.length - 2) ? null : <span className="mx-1">...</span> }
 			</Fragment>
 		)
 	}
 
 	const pageNearCheck = () => {
+
 		const pageNearStart = () => {
 			let pageIncrease = (page === 0) ? 2 : 1;
 
@@ -78,7 +84,9 @@ const Table = ({ columns, rows }) => {
 					<button className={`${buttonClass} ${(pageIncrease === 1) ? 'bg-light-blue-400 border-2 border-light-blue-400':''} `} onClick={() => setStatePage(page)}>{page + pageIncrease}</button>
 					<button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease)}>{page + pageIncrease + 1}</button>
 					<button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease + 1)}>{page + pageIncrease + 2}</button>
-					<span className="mx-1">...</span>
+
+					{/* check if last page is next to end page*/}
+					{ (page + pageIncrease + 3 !== dividedRows.length - 1) ? null : <span className="mx-1">...</span> }
 				</Fragment>
 			)
 		}
@@ -88,7 +96,12 @@ const Table = ({ columns, rows }) => {
 
 			return (
 				<Fragment>
-					<span className="mx-1">...</span>
+					{/* check if 1st page is next */}
+					{ (pageCheck) 
+						? (page - 4 < 1) ? null : <span className="mx-1">...</span>
+						: (page - 3 < 1) ? null : <span className="mx-1">...</span>
+					}
+
 					{ (pageCheck) 
 						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - 3)}>{page - 2}</button>
 						: <button className={`${buttonClass}`} onClick={() => setStatePage(page - 2)}>{page - 1}</button>
@@ -239,8 +252,7 @@ const Table = ({ columns, rows }) => {
 
 										{/* pages in between */}
 										{ (page > 1 && (page + 1) < dividedRows.length - 1) ?
-											pageInbetween()
-											: pageNearCheck()
+											pageInbetween() : pageNearCheck()
 										}
 
 										{/* last page */}
@@ -255,7 +267,7 @@ const Table = ({ columns, rows }) => {
 										}
 										<ChevronRightIcon className="h-6 w-6 ml-2 focus:outline-none" onClick={nextPage}/>
 									</Fragment>
-								: ''
+								: null
 							}
 						</div>
 
