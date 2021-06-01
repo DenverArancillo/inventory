@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 
-const Table = ({ columns, rows }) => {
+const Table = ({ columns, rows, actions }) => {
 	
 	let buttonClass = 'text-white text-xs px-2 py-1 mx-1 focus:outline-none shadow-lg rounded bg-blue-400'
 	
@@ -58,6 +58,7 @@ const Table = ({ columns, rows }) => {
 	}
 
 	const pageInbetween = () => {
+		console.log('pageInbetween');
 
 		return (
 			<Fragment>
@@ -77,13 +78,33 @@ const Table = ({ columns, rows }) => {
 	const pageNearCheck = () => {
 
 		const pageNearStart = () => {
+			console.log('pageNearStart');
+
 			let pageIncrease = (page === 0) ? 2 : 1;
+
+			const checkPageAvailable = page => !!dividedRows[page];
+
+			let firstPage = checkPageAvailable(page + pageIncrease);
+			let secondPage = checkPageAvailable(page + pageIncrease + 1);
+			let thirdPage = checkPageAvailable(page + pageIncrease + 2);
 
 			return (
 				<Fragment>
-					<button className={`${buttonClass} ${(pageIncrease === 1) ? 'bg-light-blue-400 border-2 border-light-blue-400':''} `} onClick={() => setStatePage((page === 0) ? 1 : page)}>{page + pageIncrease}</button>
-					<button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease)}>{page + pageIncrease + 1}</button>
-					<button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease + 1)}>{page + pageIncrease + 2}</button>
+
+					{ firstPage
+						? <button className={`${buttonClass} ${(pageIncrease === 1) ? 'bg-light-blue-400 border-2 border-light-blue-400':''} `} onClick={() => setStatePage((page === 0) ? 1 : page)}>{page + pageIncrease}</button>
+						: null
+					}
+
+					{ secondPage
+						? <button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease)}>{page + pageIncrease + 1}</button>
+						: null
+					}
+
+					{ thirdPage
+						? <button className={`${buttonClass}`} onClick={() => setStatePage(page + pageIncrease + 1)}>{page + pageIncrease + 2}</button>
+						: null
+					}					
 
 					{/* check if last page is next to end page*/}
 					{ (page + pageIncrease + 2 > dividedRows.length - 2) ? null : <span className="mx-1">...</span> }
@@ -92,30 +113,38 @@ const Table = ({ columns, rows }) => {
 		}
 
 		const pageNearEnd = () => {
-			let pageCheck = page === dividedRows.length - 1
+			console.log('pageNearEnd');
+			let pageDecrease = (page === dividedRows.length - 1) ? 1 : 0;
+
+			const checkPageAvailable = page => !!dividedRows[page] && page !== 0;
+
+												2 - 1 - 2
+			let thirdPage = checkPageAvailable(page - pageDecrease - 2);
+			let secondPage =  checkPageAvailable(page - pageDecrease - 1);
+			let firstPage = checkPageAvailable(page - pageDecrease);
 
 			return (
 				<Fragment>
 					{/* check if 1st page is next */}
-					{ (pageCheck) 
+					{ (!!pageDecrease) 
 						? (page - 4 < 1) ? null : <span className="mx-1">...</span>
 						: (page - 3 < 1) ? null : <span className="mx-1">...</span>
 					}
 
-					{ (pageCheck) 
-						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - 3)}>{page - 2}</button>
-						: <button className={`${buttonClass}`} onClick={() => setStatePage(page - 2)}>{page - 1}</button>
+					{ (thirdPage) 
+						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - pageDecrease - 2)}>{page - pageDecrease - 1}</button>
+						: null
 					}
 
-					{ (pageCheck) 
-						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - 2)}>{page - 1}</button> 
-						: <button className={`${buttonClass}`} onClick={() => setStatePage(page - 1)}>{page}</button> 
+					{ (secondPage) 
+						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - pageDecrease - 1)}>{page - pageDecrease}</button> 
+						: null
 
 					}
 
-					{ (pageCheck)
-						? <button className={`${buttonClass}`} onClick={() => setStatePage(page - 1)}>{page}</button> 
-						: <button className={`${buttonClass} bg-light-blue-400 border-2 border-light-blue-400`} onClick={() => setStatePage(page)}>{page + 1}</button>
+					{ (firstPage)
+						? <button className={`${buttonClass} ${!!!pageDecrease ? 'bg-light-blue-400 border-2 border-light-blue-400' : ''}`} onClick={() => setStatePage(page - pageDecrease)}>{!!!pageDecrease ? page + 1 : page}</button>
+						: null
 					}
 				</Fragment>
 			)
@@ -191,7 +220,7 @@ const Table = ({ columns, rows }) => {
 						<div className="py-4 flex items-center justify-between">
 							<div className="text-left">
 								<span className="leading-6 text-sm text-gray-900 pr-2">Show Entries</span>
-								<select className="bg-gray-100 rounded px-2 py-1" onChange={(e) => setStateEntries(e.target.value)}>
+								<select className="bg-gray-100 border-2 border-gray-200 rounded px-2 py-1" onChange={(e) => setStateEntries(e.target.value)}>
 									<option value="10">10</option>
 									<option value="25">25</option>
 									<option value="50">50</option>
@@ -199,15 +228,25 @@ const Table = ({ columns, rows }) => {
 							</div>
 							<div className="text-left">
 								<span className="leading-6 text-sm text-gray-900 pr-2">Search: </span>
-								<input className="bg-gray-100 rounded border-2 border-gray-200 focus:outline-none" type="text" onChange={(e) => setTimeout(() => setStateSearch(e.target.value), 500)}/>
+								<input 
+									type="text" 
+									className="bg-gray-100 rounded border-2 border-gray-200 focus:outline-none focus:border-blue-400" 
+									onChange={(e) => setTimeout(() => setStateSearch(e.target.value), 500)}
+								/>
 							</div>
 						</div>
 
 						<table className="min-w-full divide-y divide-gray-200 border border-gray-200 table-auto">
-							<thead className="bg-gray-50">
+							<thead className="bg-gray-100">
 								<tr>
-									{columns.map(({ title }, idx) => (
-										<th key={`table1-${idx}`} scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">{title}</th> 
+									{columns.map(({ title, style }, idx) => ( 
+										<th 
+											key={`table1-${idx}`}
+											scope="col" 
+											className={`${(!!style) ? style : ''} px-6 py-3 text-left text-sm font-bold tracking-wider`}
+										>
+											{title}
+										</th>
 									))}
 								</tr>
 							</thead>
@@ -215,18 +254,18 @@ const Table = ({ columns, rows }) => {
 								{
 									(dividedRows.length) ? 
 
-										(pagination) ? 
-											dividedRows[page].map((r, idx) => (
-												<tr key={idx}>
-													{columns.map(({ id }) => (
-														<td key={`${idx}-${id}`} className="px-6 py-2 whitespace-nowrap">{r[id]}</td>
-													))}
-												</tr>
-											))
+										(pagination) 
+										? dividedRows[page].map((r, idx) => (
+											<tr key={idx}>
+												{columns.map(({ id }) => ( 
+													<td key={`${idx}-${id}`} className="px-6 py-3 whitespace-nowrap">{r[id]}</td> // px-6 py-2
+												))}	
+											</tr>
+										))
 										: dividedRows.map((r, idx) => (
 											<tr key={idx}>
 												{columns.map(({ id }) => (
-													<td key={`${idx}-${id}`} className="px-6 py-2 whitespace-nowrap">{r[id]}</td>
+													<td key={`${idx}-${id}`} className="px-6 py-3 whitespace-nowrap">{r[id]}</td> // px-6 py-2
 												))}
 											</tr>
 										))
@@ -250,9 +289,12 @@ const Table = ({ columns, rows }) => {
 											: null
 										}
 
-										{/* pages in between */}
-										{ (page > 1 && (page + 1) < dividedRows.length - 1) ?
-											pageInbetween() : pageNearCheck()
+										{/* pages in between */} 
+										{ (dividedRows.length === 2) 
+											? null
+											: (page > 1 && (page + 1) < dividedRows.length - 1) 
+												? pageInbetween() 
+												: pageNearCheck()
 										}
 
 										{/* last page */}
