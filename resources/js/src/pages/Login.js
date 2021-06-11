@@ -40,6 +40,7 @@ const Login = () => {
             setStateloginErrorMessage('Email or password is incorrect.');
         }
     }
+    
     return (
         <div className="min-h-screen bg-gradient-to-r from-blue-400 to-blue-600 grid place-items-center">
 
@@ -60,9 +61,10 @@ const Login = () => {
                         </div>
                         <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Log In</button>
                         <div className="flex items-center justify-between">
-                            <a href="/register" className="text-sm sm:text-xs text-purple-600 hover:text-purple-700 hover:underline mt-4">Register an account</a>
-                            <a href="#" className="text-sm sm:text-xs text-purple-600 hover:text-purple-700 hover:underline mt-4">Forgot your password?</a>
+                            <a href="/register" className="text-xs sm:text-sm text-purple-600 hover:text-purple-700 hover:underline mt-4">Register an account</a>
+                            <a href="#" className="text-xs sm:text-sm text-purple-600 hover:text-purple-700 hover:underline mt-4">Forgot your password?</a>
                         </div>
+                        <a href="/" className="text-xs sm:text-sm text-purple-600 hover:text-purple-700 hover:underline mt-4">Home</a>
                     </form>
 
                 </div>

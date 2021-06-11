@@ -75,8 +75,8 @@ const Register = () => {
     return (
         <div className="min-h-screen bg-gradient-to-r from-blue-400 to-blue-600 grid place-items-center">
 
-            <div className="bg-white max-w-lg lg:w-2/3 rounded shadow-2xl mx-auto p-8 md:p-16">
-                <h3 className="font-bold text-2xl">Register an account.</h3>
+            <div className="bg-white max-w-lg lg:w-2/3 rounded shadow-2xl mx-auto my-10 p-8 md:p-16">
+                <h3 className="font-bold text-2xl">Register an account</h3>
 
                 <div className="mt-2">
                     <div className={`text-sm text-red-500 mb-2 ${!registerErrorMessage ? 'hidden': ''}`}>{registerErrorMessage}</div>
