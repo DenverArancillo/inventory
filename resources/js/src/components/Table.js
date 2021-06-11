@@ -1,6 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 
+import Cookies from '../components/Cookies';
+
 const Table = ({ columns, rows, actions }) => {
 	
 	let buttonClass = 'text-white text-xs px-2 py-1 mx-1 focus:outline-none shadow-lg rounded bg-blue-400'
@@ -58,7 +60,6 @@ const Table = ({ columns, rows, actions }) => {
 	}
 
 	const pageInbetween = () => {
-		console.log('pageInbetween');
 
 		return (
 			<Fragment>
@@ -76,10 +77,7 @@ const Table = ({ columns, rows, actions }) => {
 	}
 
 	const pageNearCheck = () => {
-
 		const pageNearStart = () => {
-			console.log('pageNearStart');
-
 			let pageIncrease = (page === 0) ? 2 : 1;
 
 			const checkPageAvailable = page => !!dividedRows[page];
@@ -113,7 +111,6 @@ const Table = ({ columns, rows, actions }) => {
 		}
 
 		const pageNearEnd = () => {
-			console.log('pageNearEnd');
 			let pageDecrease = (page === dividedRows.length - 1) ? 1 : 0;
 
 			const checkPageAvailable = page => !!dividedRows[page] && page !== 0;
@@ -156,6 +153,19 @@ const Table = ({ columns, rows, actions }) => {
 			<Fragment>
 				{ pageRender() }
 			</Fragment>
+		)
+	}
+
+	const displayActionsColumn = (data, idx) => {
+		if (!Cookies.get('access_token')) return;
+		if (!actions) return;
+
+		return (
+			<td className="text-center">
+				{actions.map(({ title, icon, event }, actionIdx) => (
+					<button key={`action-${idx}-${actionIdx}`} className="mx-1 p-2 border-2 border-red-500 text-sm" onClick={(e) => event(e, data)}>{title}</button>
+				))}
+			</td>
 		)
 	}
 
@@ -220,7 +230,7 @@ const Table = ({ columns, rows, actions }) => {
 						<div className="py-4 flex items-center justify-between">
 							<div className="text-left">
 								<span className="leading-6 text-sm text-gray-900 pr-2">Show Entries</span>
-								<select className="bg-gray-100 border-2 border-gray-200 rounded px-2 py-1" onChange={(e) => setStateEntries(e.target.value)}>
+								<select className="bg-gray-100 border-2 border-gray-200 rounded px-2 py-1 text-sm" onChange={(e) => setStateEntries(e.target.value)}>
 									<option value="10">10</option>
 									<option value="25">25</option>
 									<option value="50">50</option>
@@ -230,7 +240,7 @@ const Table = ({ columns, rows, actions }) => {
 								<span className="leading-6 text-sm text-gray-900 pr-2">Search: </span>
 								<input 
 									type="text" 
-									className="bg-gray-100 rounded border-2 border-gray-200 focus:outline-none focus:border-blue-400" 
+									className="bg-gray-100 rounded border-2 border-gray-200 focus:outline-none focus:border-blue-400 p-1 text-sm" 
 									onChange={(e) => setTimeout(() => setStateSearch(e.target.value), 500)}
 								/>
 							</div>
@@ -248,6 +258,12 @@ const Table = ({ columns, rows, actions }) => {
 											{title}
 										</th>
 									))}
+									{ (!!Cookies.get('access_token'))
+										? (!!actions)
+											? <th className="py-3 text-center">Actions</th>
+											: null
+										: null
+									}
 								</tr>
 							</thead>
 							<tbody className="bg-white divide-y divide-gray-200">
@@ -258,15 +274,19 @@ const Table = ({ columns, rows, actions }) => {
 										? dividedRows[page].map((r, idx) => (
 											<tr key={idx}>
 												{columns.map(({ id }) => ( 
-													<td key={`${idx}-${id}`} className="px-6 py-3 whitespace-nowrap">{r[id]}</td> // px-6 py-2
+													<td key={`${idx}-${id}`} className="px-6 py-3 whitespace-nowrap">{r[id]}</td>
 												))}	
+
+												{ displayActionsColumn(r, idx) }
 											</tr>
 										))
 										: dividedRows.map((r, idx) => (
 											<tr key={idx}>
 												{columns.map(({ id }) => (
-													<td key={`${idx}-${id}`} className="px-6 py-3 whitespace-nowrap">{r[id]}</td> // px-6 py-2
+													<td key={`${idx}-${id}`} className="px-6 py-3 whitespace-nowrap">{r[id]}</td>
 												))}
+
+												{ displayActionsColumn(r, idx) }
 											</tr>
 										))
 
