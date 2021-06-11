@@ -22,10 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/brands', [BrandsController::class, 'index']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-	Route::get('/brands', [BrandsController::class, 'index']);
 	Route::post('/brands', [BrandsController::class, 'store']);
 	Route::get('/brands/{id}', [BrandsController::class, 'show']);
 	Route::put('/brands/{id}', [BrandsController::class, 'update']);
