@@ -66,7 +66,9 @@ const Header = ({ }) => {
             }
             <div className="bg-blue-500 p-2 flex items-center justify-between">
                 <div className="flex items-center">
-                    <img src="https://cdn2.iconfinder.com/data/icons/icontober/64/Inkcontober_Trail-512.png" width="50" alt="Logo" className="mx-4"/>
+                    {/* <img src="https://cdn2.iconfinder.com/data/icons/icontober/64/Inkcontober_Trail-512.png" width="50" alt="Logo" className="mx-4"/> */}
+                    <img src="/img/logo.png" width="50" alt="Logo" className="mx-4"/>
+                
                     <Link to="/" className="text-gray-100 px-4">Home</Link>
                     <Dropdown
                         title="Menu"
