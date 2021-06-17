@@ -73,7 +73,11 @@ class BrandsController extends Controller
     {
         $brand = Brand::find($id);
         $brand->update($request->all());
-        return $brand;
+        return response()->json([
+            'message' => 'Brand successfully updated!',
+            'brands' => Brand::all(),
+            'status' => true
+        ]);
     }
 
     /**
