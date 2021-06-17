@@ -13,38 +13,43 @@ const Brand = ({ match }) => {
     // match.params.id
 
     const { data: brands, isPending, error, setData: setStateBrands } = useFetch("/api/brands");
-    const [dialogErrorMessage, setStatedialogErrorMessage] = useState('');
-    const [editDialogData, setStateeditDialogData] = useState({});
+    const [addDialogErrorMessage, setStateAddDialogErrorMessage] = useState('');
 
-    // add brand dialog inputs
+    const [editDialogData, setStateEditDialogData] = useState({ open: false });
+    const [editDialogErrorMessage, setStateEditDialogErrorMessage] = useState('');
+
+
+    // add brand dialog input
     const brandRef = useRef();
+    
+    // edir brand dialog input
+    const editDialogBrandNameRef = useRef();
 
     const addDialogContent = handleDialog => {
         const submitNewBrand = async event => {
             event.preventDefault();
 
             if (brandRef.current.value === '') {
-                setStatedialogErrorMessage('Brand Name is required.');
+                setStateAddDialogErrorMessage('Brand Name is required.');
                 return;
             } 
 
             let brandName = brandRef.current.value;
             let response = await fetchApi('post', '/api/brands', { brand_name: brandName });
-            console.log(response);
 
             if (response.data.status) {
                 brandRef.current.form.reset();
                 setStateBrands(response.data.brands);
                 handleDialog(false);
-                setStatedialogErrorMessage('');
+                setStateAddDialogErrorMessage('');
             } else {
-                setStatedialogErrorMessage('Brand already exists.')
+                setStateAddDialogErrorMessage('Brand already exists.')
             }
         }
 
         return (
             <form>
-                <div className={`text-sm text-red-500 mb-2 ${!dialogErrorMessage ? 'hidden': ''}`}>{dialogErrorMessage}</div>
+                <div className={`text-sm text-red-500 mb-2 ${!addDialogErrorMessage ? 'hidden': ''}`}>{addDialogErrorMessage}</div>
                 <div className="flex flex-col mb-3">
                     <label>Brand Name</label>
                     <input required className="my-2 p-1 bg-gray-200 rounded border-2 border-gray-200 focus:outline-none focus:border-blue-400" type="text" id="brandName" ref={brandRef}/>
@@ -66,24 +71,48 @@ const Brand = ({ match }) => {
     }
 
     const editDialogEvent = (event, data) => {
+        event.preventDefault();
 
-        setStateeditDialogData(true);
+        console.log(data);
 
+        editDialogBrandNameRef.current.value = data.brand_name;
+
+        setStateEditDialogData({
+            open: true,
+            content: { ...data }
+        });
     }
 
-    const editDialogContent = () => {
+    const editDialogContent = (handleDialog) => {
 
         const submitEditBrand = async event => {
+            event.preventDefault();
 
+            if (editDialogBrandNameRef.current.value === editDialogData.content.brand_name) return;
+            if (editDialogBrandNameRef.current.value === '') {
+                setStateEditDialogErrorMessage('Brand Name is required.');
+                return;
+            }
+
+            let brandName = editDialogBrandNameRef.current.value
+            let response = await fetchApi('put', `/api/brands/${editDialogData.content.id}`, { brand_name: brandName });
+
+            if (response.data.status) {
+                editDialogBrandNameRef.current.form.reset();
+                setStateBrands(response.data.brands);
+                handleDialog(false);
+                setStateEditDialogErrorMessage('');
+            } else {
+                setStateEditDialogErrorMessage(response.data.message);
+            }
         }
-
 
         return (
             <form>
-                <div className={`text-sm text-red-500 mb-2 ${!dialogErrorMessage ? 'hidden': ''}`}>{dialogErrorMessage}</div>
+                <div className={`text-sm text-red-500 mb-2 ${!editDialogErrorMessage ? 'hidden': ''}`}>{editDialogErrorMessage}</div>
                 <div className="flex flex-col mb-3">
                     <label>Brand Name</label>
-                    <input required className="my-2 p-1 bg-gray-200 rounded border-2 border-gray-200 focus:outline-none focus:border-blue-400" type="text" id="brandName"/>
+                    <input required ref={editDialogBrandNameRef} className="my-2 p-1 bg-gray-200 rounded border-2 border-gray-200 focus:outline-none focus:border-blue-400" type="text" id="brandName"/>
                 </div>
                 <div className="flex items-center justify-end">
                     <button className="bg-blue-400 rounded-md border-2 border-blue-400 text-white p-1 text-base focus:outline-none" type="submit" onClick={submitEditBrand}>Submit</button>
@@ -97,8 +126,8 @@ const Brand = ({ match }) => {
             <Dialog
                 title="Edit Brand"
                 content={editDialogContent}
-                state={editDialogData}
-                handleDialog={setStateeditDialogData}
+                state={editDialogData.open}
+                handleDialog={setStateEditDialogData}
             />
             {
                 isPending && !error
@@ -108,11 +137,11 @@ const Brand = ({ match }) => {
                     headerAction={HeaderActionContent}
                     content={(
                         <Table
+                            rows={brands}
                             columns={[
                                 { title: 'ID', id: 'id', style: "" },
                                 { title: 'Name', id: 'brand_name', style: "" }
                             ]}
-                            rows={brands}
                             actions={[
                                 { title: "Edit", icon: "", event: editDialogEvent },
                                 { title: "Delete", icon: "", event: (event, data) => { console.log(data) } },
