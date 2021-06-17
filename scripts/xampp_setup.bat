@@ -34,8 +34,8 @@ echo. >> C:\xampp\apache\conf\extra\httpd-vhosts.conf
 echo ^<VirtualHost *:80^> >> C:\xampp\apache\conf\extra\httpd-vhosts.conf
 echo    ServerAdmin webmaster@localhost.com >> C:\xampp\apache\conf\extra\httpd-vhosts.conf
 echo    DocumentRoot "C:/xampp/htdocs/inventory/public" >> C:\xampp\apache\conf\extra\httpd-vhosts.conf
-echo    ServerName inventory.com >> C:\xampp\apache\conf\extra\httpd-vhosts.conf
+echo    ServerName inventory.test >> C:\xampp\apache\conf\extra\httpd-vhosts.conf
 echo ^</VirtualHost^> >> C:\xampp\apache\conf\extra\httpd-vhosts.conf
 
 echo. >> C:\Windows\System32\drivers\etc\hosts
-echo 127.0.0.1 inventory.com >> C:\Windows\System32\drivers\etc\hosts
+echo 127.0.0.1 inventory.test >> C:\Windows\System32\drivers\etc\hosts
