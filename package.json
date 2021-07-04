@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^1.0.1",
+        "react-loader-spinner": "^4.0.0",
         "universal-cookie": "^4.0.4"
     }
 }
