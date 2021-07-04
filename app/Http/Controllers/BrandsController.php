@@ -77,7 +77,7 @@ class BrandsController extends Controller
             $brand->update($request->all());
             return response()->json([
                 'message' => 'Brand successfully updated!',
-                'brands' => $brand,
+                'brands' => Brand::all(),
                 'status' => true
             ]);
         } else {
@@ -96,7 +96,22 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        return Brand::destroy($id);
+        $brand = Brand::find($id);
+
+        if ($brand) {
+            Brand::destroy($id);
+
+            return response()->json([
+                'message' => 'Brand successfully deleted!',
+                'brands' => Brand::all(),
+                'status' => true
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Brand not found',
+                'status' => false
+            ]);
+        } 
     }
 
     /**
