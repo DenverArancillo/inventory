@@ -4,14 +4,25 @@ import { Link, useHistory } from 'react-router-dom';
 const Dropdown = ({ title, buttonClass, menuClass, linkClass, items }) => {
     const history = useHistory();
     const [stateDropdown, setStateDropdown] = useState(false);
+
     const checkTarget = event => {
         let { relatedTarget } = event;
 
+        // selecting outside of dropdown
         if (relatedTarget === null) { 
             setStateDropdown(false);
             return;
         }
+
+        let currentApp = relatedTarget.attributes.getNamedItem('data-href').nodeValue;
+
+        // selecting current app from dropdown
+        if (currentApp === location.pathname) {
+            setStateDropdown(false);
+            return;
+        }
         
+        // redirect to selected option
         if (relatedTarget.localName === 'a' && !!relatedTarget.attributes.getNamedItem('data-href')) {
             history.push(event.relatedTarget.dataset.href);
         } else {
