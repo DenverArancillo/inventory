@@ -3,14 +3,13 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 
 import Cookies from '../components/Cookies';
 
-const Table = ({ columns, rows, actions }) => {
+const Table = ({ columns, rows, actions, isLoading }) => {
 	
 	let buttonClass = 'text-white text-xs px-2 py-1 mx-1 focus:outline-none shadow-lg rounded bg-blue-400'
 	
 	const [entries, setStateEntries] = useState('10');
 	const [search, setStateSearch] = useState('');
 	const [searchResults, setStatesearchResults] = useState([]);
-	const [loading, setStateLoading] = useState(true);
 	const [dividedRows, setStateDividedRows] = useState([]);
 	const [pagination, setStatePagination] = useState(false);
 	const [page, setStatePage] = useState(0);
@@ -44,7 +43,6 @@ const Table = ({ columns, rows, actions }) => {
 		} else {
 			setStateDividedRows(_rows);
 		}
-		setStateLoading(false);
 	}
 
 	const previousPage = () => {
@@ -163,7 +161,10 @@ const Table = ({ columns, rows, actions }) => {
 		return (
 			<td className="text-center">
 				{actions.map(({ title, icon, event }, actionIdx) => (
-					<button key={`action-${idx}-${actionIdx}`} className="mx-1 p-2 border-2 border-red-500 text-sm" onClick={(e) => event(e, data)}>{title}</button>
+					// { icon() }
+					<button key={`action-${idx}-${actionIdx}`} className="mx-1 p-2 text-sm focus:outline-none" onClick={(e) => event(e, data)}>
+						{ title }
+					</button>
 				))}
 			</td>
 		)
@@ -290,7 +291,7 @@ const Table = ({ columns, rows, actions }) => {
 											</tr>
 										))
 
-									: (<tr><td colSpan={columns.length} className="text-center py-3">{(loading) ? '': 'No Data'}</td></tr>)
+									: (<tr><td colSpan={columns.length} className="text-center py-3">{(isLoading) ? '': 'No Data'}</td></tr>)
 								}
 							</tbody>
 						</table>
