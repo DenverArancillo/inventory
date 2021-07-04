@@ -76,20 +76,9 @@ const Header = ({ }) => {
                         menuClass="rounded-md absolute z-10 p-2 mt-2 flex-col shadow-lg bg-white text-base w-32 ring-black ring-opacity-5 focus:outline-none"
                         linkClass="rounded float-none px-2 py-1 text-left text-gray-700 hover:bg-gray-200 hover:text-gray-900"
                         items={[
-                            { routerLink: "/brands", name: "Brand" },
+                            { routerLink: "/brands", name: "Brands" },
+                            { routerLink: "/product-types", name: "Product Types" },
                             { link: "#", name: "Profile" },
-                            { link: "#", name: "Settings" }
-                        ]}
-                    />
-                    <Dropdown
-                        title="Menu2"
-                        buttonClass="text-gray-100 px-4"
-                        menuClass="rounded-md absolute z-10 p-2 mt-2 flex-col shadow-lg bg-white text-base w-32 ring-black ring-opacity-5 focus:outline-none"
-                        linkClass="rounded float-none px-2 py-1 text-left text-gray-700 hover:bg-gray-200 hover:text-gray-900"
-                        items={[
-                            { link: "#", name: "Posts" },
-                            { link: "#", name: "Profile" },
-                            { link: "#", name: "Settings" }
                         ]}
                     />
                 </div>
