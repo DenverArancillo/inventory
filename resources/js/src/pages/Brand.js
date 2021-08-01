@@ -47,7 +47,7 @@ const Brand = ({ match }) => {
 
             let brand_name = brandRef.current.value;
             let response = await fetchApi('post', '/api/brands', { brand_name });
-            console.log(response);d
+            console.log(response);
 
             if (response.data.status) {
                 brandRef.current.form.reset();
