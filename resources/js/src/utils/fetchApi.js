@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from '../components/Cookies';
 
-const fetchApi = async (method, url, data) => {
+const fetchApi = (method, url, data) => {
     try {
         axios.interceptors.response.use(response => {
             return response;
@@ -12,7 +12,7 @@ const fetchApi = async (method, url, data) => {
         let config = {
             method: method,
             url: url,
-            data: { ...data },
+            data: (!!data) ? { ...data } : { },
             headers: {
                 "Accept": "application/json",
                 "Authorization": `Bearer ${Cookies.get('access_token')}`
