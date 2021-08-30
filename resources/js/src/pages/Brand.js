@@ -147,8 +147,7 @@ const Brand = ({ match }) => {
 
             setStateLoading(true);
 
-            let brand_name = editDialogBrandNameRef.current.value
-            let response = await fetchApi('delete', `/api/brands/${deleteDialogData.content.id}`, { brand_name });
+            let response = await fetchApi('delete', `/api/brands/${deleteDialogData.content.id}`);
 
             if (response.data.status) {
                 setStateBrands(response.data.brands);
