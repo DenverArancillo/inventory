@@ -18,16 +18,6 @@ class ProductTypesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -92,7 +82,21 @@ class ProductTypesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $prod_type = ProductType::find($id);
+
+        if ($prod_type) {
+            $prod_type->update($request->all());
+            return response()->json([
+                'message' => 'Product type successfully updated!',
+                'productTypes' => ProductType::all(),
+                'status' => true
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Product type not found',
+                'status' => false
+            ]);
+        }
     }
 
     /**
@@ -103,6 +107,21 @@ class ProductTypesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $type = ProductType::find($id);
+
+        if ($type) {
+            ProductType::destroy($id);
+
+            return response()->json([
+                'message' => 'Product type successfully deleted!',
+                'productTypes' => ProductType::all(),
+                'status' => true
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Product type not found',
+                'status' => false
+            ]);
+        } 
     }
 }
