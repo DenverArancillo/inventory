@@ -38,4 +38,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::get('/brands/search/{name}', [BrandsController::class, 'search']);
 
 	Route::post('/product-types', [ProductTypesController::class, 'store']);
+	Route::put('/product-types/{id}', [ProductTypesController::class, 'update']);
+	Route::delete('/product-types/{id}', [ProductTypesController::class, 'destroy']);
 });
