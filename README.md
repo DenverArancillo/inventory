@@ -5,7 +5,7 @@ Technologies used:
 * Tailwindcss
 * Laravel
 
-Project is hosted on heroku: <a href="http://denver-arancillo-inventory.herokuapp.com/" target="_blank">#link</a>
+Project is hosted on heroku: <a href="http://denver-arancillo-inventory.herokuapp.com/" target="_blank" rel="noopener noreferrer">#link</a>
 
 Pages available:
 * Home page - still work in progress
