@@ -1,7 +1,7 @@
 A personal project to try learning front and back end frameworks
     
 Technologies used:
-* React
+* React (files located in 'resources/js' folder)
 * Tailwindcss
 * Laravel
 
